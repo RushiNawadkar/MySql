@@ -1,0 +1,39 @@
+============Player Team Matches================
+
+
+create table team(
+tid int primary key,
+tname varchar(20),
+player_num int
+);
+
+create table player(
+pid int primary key,
+pname varchar(20),
+spec varchar(20),
+doj date,
+no_of_match int,
+tid int,
+constraint fk_t foreign key(tid) references team(tid)
+on delete set null
+on update cascade
+);
+
+
+create table matches(
+mid int primary key,
+team1_id int,
+team2_id int,
+mdate date,
+winner int,
+mom int,
+constraint fk_k foreign key(team1_id) references team(tid),
+constraint fk_l foreign key(team2_id) references team(tid),
+constraint fk_p foreign key(mom) references player(pid),
+constraint chk_o  check(team1_id!=team2_id),
+constraint chk_win check(winner in(team1_id,team2_id))
+);
+
+
+
+
