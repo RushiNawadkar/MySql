@@ -1,0 +1,30 @@
+=========== product salesman categories=========
+
+
+
+create table salesman(
+sid int primary key,
+sname varchar(20),
+address varchar(20)
+);
+
+create table category(
+cid int primary key,
+cname varchar(20),
+descp varchar(20)
+);
+
+create table product(
+pid int primary key,
+pname varchar(20),
+price float(9,2),
+qty int,
+cid int,
+sid int,
+constraint fk_d foreign key(sid) references salesman(sid)
+on delete set null
+on update cascade,
+constraint fk_b foreign key(cid) references category(cid)
+on delete set null
+on update cascade
+); 
