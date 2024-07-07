@@ -1,0 +1,64 @@
+create table vehicle(
+vid int primary key,
+vname varchar(20),
+price float,
+descp varchar(20)
+);
+ 
+
+create table customer(
+cid int primary key,
+cname varchar(20),
+address varchar(20)
+);
+
+create table salesman(
+sid int primary key,
+sname varchar(20),
+adress varchar(20)
+);
+
+create table cust_vehicle(
+sid int,
+vid int,
+cid int,
+buy_price float,
+constraint fk_s foreign key(sid) references salesman(sid)
+on delete set null
+on update cascade,
+constraint fk_v foreign key(vid) references vehicle(vid)
+on delete set null
+on update cascade,
+constraint fk_c foreign key(cid) references customer(cid)
+on delete set null
+on update cascade
+);
+
+insert into customer values(3,'PANKAJ','MUMBAI');
+
+
+insert into salesman values(10,'RAJESH','MUMBAI');
+
+
+insert into salesman values(11,'SEEMA','PUNE');
+
+
+insert into salesman values(12,'RAKHI','PUNE');
+
+
+insert into cust_vehicle values(10,1,1,75000);
+
+
+insert into cust_vehicle values(10,2,1,790000);
+
+
+ insert into cust_vehicle values(11,3,2,80000);
+
+
+insert into cust_vehicle values(11,3,3,75000);
+
+
+insert into cust_vehicle values(10,2,3,800000);
+
+
+
